@@ -4,7 +4,7 @@ interface DisplayProps{
   number?: string,
 }
 
-export function Display({number} : DisplayProps) {
+export function DisplaySmall({number} : DisplayProps) {
   
   return (
     <ContantDisplay>

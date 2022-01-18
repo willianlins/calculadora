@@ -1,13 +1,11 @@
-import { Btn as Button } from "./components/Btn";
-import { Display } from "./components/Display";
+import { Calculadora } from "./components/Calculadora";
 
 import "./styles/global.css";
 
 function App() {
   return (
     <>
-      <Button numberOrSymbol="3" />
-      <Display number="33"/>
+      <Calculadora />
     </>
   );
 }
