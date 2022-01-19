@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 
 export const ContantDisplay = styled.div`
-  width: 280px;
-  height: 46px;
-  background-color: #ccc;
+  
+  height: 52px;
   vertical-align: middle;
-  display: table-cell;
-  text-align: right;
-  font: 40px 'Ubuntu', 'Roboto';
+  font-family: 'Ubuntu', 'Roboto';
+  font-size: 40px;
   font-weight: 500;
   padding: 0 10px;
+
+
 `;

@@ -2,7 +2,7 @@ import { DisplaySmall } from "../../components/DisplaySmall";
 import { Display } from "../../components/Display";
 import { Btn as Button } from "../../components/Btn";
 
-import { Container, Keyboard } from "./styles";
+import { Container, Keyboard, Displays } from "./styles";
 
 
 import { RiDeleteBack2Line } from "react-icons/ri";
@@ -10,10 +10,10 @@ import { RiDeleteBack2Line } from "react-icons/ri";
 export function Calculadora() {
   return (
     <Container>
-      <div>
-        <DisplaySmall number="0"/>
-        <Display number="0"/>
-      </div>
+      <Displays>
+        <DisplaySmall number="1"/>
+        <Display number="="/>
+      </Displays>
       <Keyboard>
         <div>
           <Button numberOrSymbol="%" background="#F1F1F1" />
