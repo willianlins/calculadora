@@ -13,7 +13,6 @@ export const Container = styled.div`
 `;
 
 export const Displays = styled.div`
-  background-color: grey;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;

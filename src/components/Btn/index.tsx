@@ -1,17 +1,16 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Button } from "./styles";
 
-interface BtnProps {
+interface BtnProps{
   background?: string
   numberOrSymbol?: string
   children?: ReactNode;
+  onClick?: ()=> void;
 }
 
 
-export function Btn({ background, numberOrSymbol, children }: BtnProps) {
+export function Btn({ background, numberOrSymbol, children, onClick}: BtnProps) {
   return (
-    <>
-      <Button background={background}>{ numberOrSymbol || children}</Button>
-    </>
+      <Button background={background} onClick={onClick}>{numberOrSymbol || children}</Button>
   )
 }

@@ -9,6 +9,4 @@ export const ContantDisplay = styled.div`
   font-size: 40px;
   font-weight: 500;
   padding: 0 10px;
-
-
 `;
