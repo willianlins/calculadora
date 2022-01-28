@@ -1,7 +1,7 @@
 import { ContantDisplay } from "./styles";
 
 interface DisplayProps{
-  number?: string[],
+  number?: string,
 }
 
 export function DisplaySmall({number} : DisplayProps) {

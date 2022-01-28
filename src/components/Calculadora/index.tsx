@@ -4,70 +4,92 @@ import { Btn as Button } from "../../components/Btn";
 
 import { Container, Keyboard, Displays } from "./styles";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { RiDeleteBack2Line } from "react-icons/ri";
 
+let num1: string;
+let operador: string;
 
 export function Calculadora() {
 
-  const [numberDisplay, setnumberDisplay] = useState(['0']);
-  const [numberDisplaySmall, setnumberDisplaySmall] = useState(['']);
+  const [numberDisplay, setnumberDisplay] = useState('0');
+  const [numberDisplaySmall, setnumberDisplaySmall] = useState('');
 
-  
+
+
   function addNumber(number: string): void {
+
     switch (number) {
       case '+':
-        break;
+      // eslint-disable-next-line no-fallthrough
       case '-':
-        break;
+      // eslint-disable-next-line no-fallthrough
       case '*':
-        break;
+      // eslint-disable-next-line no-fallthrough
       case '/':
-        break;
+      // eslint-disable-next-line no-fallthrough
       case '%':
+
+        if(numberDisplay.length >= 1){
+          num1 = numberDisplay;
+          operador = number;
+          setnumberDisplay('');
+          setnumberDisplaySmall(`${num1} ${number}`);
+        }
         break;
-      case '-':
+      case '=':
+
+        let num2 = numberDisplay;
+
+        setnumberDisplay('');
+
+           let resultado = calcula(num1, num2, operador);
+
+        setnumberDisplay(resultado)
+        setnumberDisplaySmall(`${num1} ${operador} ${num2}`);
         break;
-      case '-':
-        break;
-      case '-':
-        break;
-      case '-':
-        break;
-      case '-':
-        break;
-      case '-':
-        break;
-      case '-':
+      case 'del':
+        let numbers = numberDisplay;
+
+        //numberDisplay.replace()
+        setnumberDisplay(numbers);
+
         break;
       case 'C':
-        setnumberDisplay(['0']);
+        setnumberDisplay('0');
         break;
       case 'CE':
-        setnumberDisplay(['0']);
-        setnumberDisplaySmall(['']);
+        setnumberDisplay('0');
+        setnumberDisplaySmall('');
         break;
       default:
-        if(numberDisplay[0] !== '0' || (numberDisplay[0] === '0' || number === '0')){
-          setnumberDisplay([...numberDisplay, number])
-        }else{
-          setnumberDisplay([number])
+        if (numberDisplay[0] === '0' && (number === '0' && numberDisplay.length === 1)) {
+          setnumberDisplay(number)
+        } else if (numberDisplay[0] === '0' && numberDisplay.length === 1) {
+          setnumberDisplay(number)
+        } else {
+          setnumberDisplay(numberDisplay + number)
         }
     }
 
 
 
-    // if (number !== '=') {
-    //   numberDisplay[0] !== '' ? setnumberDisplay([...numberDisplay, number]) : setnumberDisplay([number]);
-    // } else {
-    //   let numOne;
-    //   let numTwo;
+    function calcula(num1: string, num2: string, operator: string): string {
 
-    //   numOne = numberDisplay.slice(0, numberDisplay.findIndex((arr) => arr === '+'));
-    //   console.log('-----------------')
-    //   console.log(numOne)
-    // }
+      if (operator === '+') {
+        return String(Number(num1) + Number(num2));
+      } else if (operator === '-') {
+        return String(Number(num1) - Number(num2));
+      } else if (operator === '*') {
+        return String(Number(num1) * Number(num2));
+      } else if (operator === '/') {
+        return String(Number(num1) / Number(num2));
+      } else
+        return 'NaN';
+
+
+    }
   }
 
 
@@ -96,10 +118,10 @@ export function Calculadora() {
           <Button numberOrSymbol="3" onClick={() => addNumber('3')} />
           <Button numberOrSymbol="+/-" onClick={() => addNumber('0')} />
           <Button numberOrSymbol="0" onClick={() => addNumber('0')} />
-          <Button numberOrSymbol="," onClick={() => addNumber('.')} />
+          <Button numberOrSymbol="," onClick={() => addNumber(',')} />
         </div>
         <div>
-          <Button background="#F1F1F1" >
+          <Button background="#F1F1F1" onClick={() => addNumber('del')} >
             <RiDeleteBack2Line />
           </Button>
           <Button numberOrSymbol="&divide;" background="#F1F1F1" onClick={() => addNumber('/')} />
