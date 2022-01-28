@@ -51,9 +51,16 @@ export function Calculadora() {
         break;
       case 'del':
         let numbers = numberDisplay;
+        let pos = numbers[numbers.length];
 
-        //numberDisplay.replace()
-        setnumberDisplay(numbers);
+        console.log(pos);
+
+        let mewn = number.replace(pos, '');
+
+        //console.log(pos);
+        console.log(numbers);
+
+        setnumberDisplay(pos);
 
         break;
       case 'C':
