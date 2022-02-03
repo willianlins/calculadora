@@ -31,7 +31,7 @@ export function Calculadora() {
       // eslint-disable-next-line no-fallthrough
       case '%':
 
-        if(numberDisplay.length >= 1){
+        if (numberDisplay.length >= 1) {
           num1 = numberDisplay;
           operador = number;
           setnumberDisplay('');
@@ -44,43 +44,36 @@ export function Calculadora() {
 
         setnumberDisplay('');
 
-           let resultado = calcula(num1, num2, operador);
+        let resultado = calcula(num1, num2, operador);
 
         setnumberDisplay(resultado)
         setnumberDisplaySmall(`${num1} ${operador} ${num2}`);
         break;
       case 'del':
-        let numbers = numberDisplay;
-        let pos = numbers[numbers.length];
-
-        console.log(pos);
-
-        let mewn = number.replace(pos, '');
-
-        //console.log(pos);
-        console.log(numbers);
-
-        setnumberDisplay(pos);
-
+        const pos = numberDisplay[numberDisplay.length - 1];
+        const newNumbers = numberDisplay.replace(String(pos), '');
+        if (newNumbers.length <= 0 ) {
+          setnumberDisplay('0');
+        } else {
+          setnumberDisplay(newNumbers);
+        }
         break;
       case 'C':
         setnumberDisplay('0');
+        setnumberDisplaySmall('');
         break;
       case 'CE':
         setnumberDisplay('0');
-        setnumberDisplaySmall('');
         break;
       default:
         if (numberDisplay[0] === '0' && (number === '0' && numberDisplay.length === 1)) {
           setnumberDisplay(number)
-        } else if (numberDisplay[0] === '0' && numberDisplay.length === 1) {
+        } else if (numberDisplay[0] === '0' && numberDisplay.length === 1 && number !== ',') {
           setnumberDisplay(number)
         } else {
           setnumberDisplay(numberDisplay + number)
         }
     }
-
-
 
     function calcula(num1: string, num2: string, operator: string): string {
 
@@ -92,14 +85,12 @@ export function Calculadora() {
         return String(Number(num1) * Number(num2));
       } else if (operator === '/') {
         return String(Number(num1) / Number(num2));
+      } else if (operator === '%') {
+       return String(Number(num1) * Number(num2)/100);
       } else
         return 'NaN';
-
-
     }
   }
-
-
   return (
     <Container>
       <Displays>

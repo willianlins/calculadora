@@ -1,13 +1,16 @@
 import { ContantDisplay } from "./styles";
 
 interface DisplayProps{
-  number?: string,
+  number: string,
 }
 
 export function DisplaySmall({number} : DisplayProps) {
-  
+ 
+  const sizeFont = number.length;
+
+  console.log(number);
   return (
-    <ContantDisplay>
+    <ContantDisplay sizeFont={sizeFont}>
       {number}
     </ContantDisplay>
   );
